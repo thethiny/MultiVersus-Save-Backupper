@@ -1,0 +1,52 @@
+name: Build and Release MVSI Tool
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.py'
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --icon=mvsi.ico --add-data "mvsi.ico;." --add-data "steam_api64.dll;." main.py
+
+      - name: Rename and prepare release artifact
+        run: |
+          mkdir release
+          copy dist\main.exe release\MVSI_Backup_Tool.exe
+          powershell -Command "Add-Content -Path $env:GITHUB_ENV -Value ('TAG=' + (Get-Date -Format 'ddMMyy-HHmm'))"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MVSI_Backup_Tool
+          path: release/MVSI_Backup_Tool.exe
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.TAG }}
+          name: MVSI_Backup_Tool.exe
+          files: release/MVSI_Backup_Tool.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
