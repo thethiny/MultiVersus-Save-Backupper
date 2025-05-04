@@ -30,6 +30,9 @@ class DataRequest(BaseModel):
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/healthcheck")
+async def healthcheck():
+    return "ok"
 
 @app.post("/get_ticket")
 async def get_ticket(data: LoginRequest):

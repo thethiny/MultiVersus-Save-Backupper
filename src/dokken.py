@@ -93,7 +93,12 @@ class DokkenAPI:
         for key, r in zip(urls.keys(), response.get("responses", [])):
             status_code = r.get("status_code", 200)
             if status_code != 200:
-                raise ValueError(f"Error in {key}: {status_code}")
+                if status_code == 404:
+                    print(f"Warning: key {key} yielded 404!")
+                    responses[key] = None
+                    continue
+                else:
+                    raise ValueError(f"Error in {key}: {status_code}")
             returned = r.get("body", None)
             if not returned:
                 print(f"Warning: {key}'s return was empty!")
