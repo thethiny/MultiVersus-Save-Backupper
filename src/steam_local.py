@@ -1,8 +1,8 @@
+import os
+import time
 from ctypes import POINTER, byref, cast, create_string_buffer, sizeof
 from ctypes import Structure, WinDLL, c_bool, c_char_p, c_int, c_uint32, c_uint64, c_void_p
 from enum import IntEnum
-import os
-import time
 from typing import Type
 
 

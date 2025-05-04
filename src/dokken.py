@@ -123,9 +123,6 @@ class DokkenAPI:
                 "fail_on_missing": False,
                 "steam": self.ticket,
             },
-            # "metadata": {
-            #     "Platform": "PC"
-            # },
             "options": [
                 "configuration",
                 "achievements",
@@ -155,3 +152,4 @@ class DokkenAPI:
         url = self.make_url("/access")
         headers = self.get_headers(True)
         resp = requests.delete(url, headers=headers)
+        return resp.json()

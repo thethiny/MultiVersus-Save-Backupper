@@ -1,5 +1,5 @@
 import shutil
-from src.steam_local import EResult, EncryptedAppTicketResponse_t, SteamAppTicket
+from src.steam_local import SteamAppTicket
 from src.dokken import DokkenAPI
 from src.zip_it import zip_folder
 
