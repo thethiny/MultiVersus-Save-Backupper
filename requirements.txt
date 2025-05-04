@@ -2,3 +2,4 @@ requests
 fastapi
 uvicorn
 pydantic
+steam[client]
