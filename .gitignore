@@ -1,2 +1,5 @@
 profiles
 releases
+
+__pycache__
+*.pyc
