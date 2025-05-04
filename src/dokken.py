@@ -14,19 +14,9 @@ class DokkenAPI:
         self.ticket = ticket
         self.token = None
 
-    def backup_profile(self, store_path):
-        print("Logging in to MultiVersus Servers!")
-
-        access_info = self.login()
-
-        account_id = access_info.get("account", {}).get("id")
-        if not account_id:
-            raise ValueError("Couldn't find account id!")
-        print(f"Logged in as user {account_id}")
-
-        print(f"Retreiving Stats and Inventory")
-        profile_info = self.get_profile_info(account_id)
-
+    def save_mvs_data(self, store_data, store_path, account_id):
+        access_info, profile_info = store_data
+        
         base_path = store_path.format(account_id=account_id)
         os.makedirs(base_path, exist_ok=True)
 
@@ -41,7 +31,20 @@ class DokkenAPI:
             ) as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
 
-        return account_id
+    def get_user_mvs_data(self):
+        print("Logging in to MultiVersus Servers!")
+
+        access_info = self.login()
+
+        account_id = access_info.get("account", {}).get("id")
+        if not account_id:
+            raise ValueError("Couldn't find account id!")
+        print(f"Logged in as user {account_id}")
+
+        print(f"Retreiving Stats and Inventory")
+        profile_info = self.get_profile_info(account_id)
+
+        return (access_info, profile_info), account_id
 
     def get_profile_info(self, account_id):
         main_url = self.make_url("/batch")

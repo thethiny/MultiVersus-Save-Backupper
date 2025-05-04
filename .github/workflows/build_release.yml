@@ -5,7 +5,10 @@ on:
     branches:
       - master
     paths:
-      - '**/*.py'
+      - main.py
+      - src/dokken.py
+      - src/__init__.py
+      - src/steam_local.py
 
   workflow_dispatch:
 

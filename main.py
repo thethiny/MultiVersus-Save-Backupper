@@ -18,7 +18,7 @@ def main() -> SteamAppTicket:
         except Exception:
             pass
         return steam
-    
+
     steam_id = display_name = ""
     try:
         steam_id = steam.get_steam_id()
@@ -29,12 +29,12 @@ def main() -> SteamAppTicket:
     except Exception:
         pass
     print(f"Logged in as steam user {display_name} ({steam_id})")
-    
+
     try:
         steam.request_and_wait_for_encrypted_app_ticket()
     except Exception as e:
         print("Attempting to re-use existing login!")
-        
+
     try:
         ticket = steam.get_encrypted_app_ticket().hex()
         print(f"Received ticket", ticket)
@@ -47,7 +47,8 @@ def main() -> SteamAppTicket:
 
     print("MultiVersus Login")
     mvs = DokkenAPI(ticket)
-    account_id = mvs.backup_profile(STORE_PATH)
+    account_info, account_id = mvs.get_user_mvs_data()
+    mvs.save_mvs_data(account_info, STORE_PATH, account_id)
 
     try:
         mvs.logout()
