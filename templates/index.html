@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MultiVersus Save Backup Tool</title>
+        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <div class="background-layer"></div>
+
+        <div class="content-wrapper">
+            <div class="header-group">
+                <img src="/static/assets/logo_wide.png" alt="Logo" class="logo-centered" />
+                <h1 class="main-heading">MultiVersus Save Backup Tool!</h1>
+                <h2 class="main-heading">Download the
+                    <a href="https://github.com/thethiny/MultiVersus-Save-Backupper/releases/latest/" target="_blank">
+                    Offline tool</a> or use the online version below</h2>
+            </div>
+
+            <div class="main-container">
+                <a href="https://x.com/MVSInfinite" target="_blank" class="instructions-button"
+                    >Instructions</a
+                >
+                <form id="login-form">
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Steam Username"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Steam Password"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="code"
+                        placeholder="Steam Guard Code or Email OTP (if required)"
+                    />
+                    <button type="submit">Get your data!</button>
+                </form>
+                <div id="result-output" class=""></div>
+            </div>
+
+            <div class="warning-banner">
+                <span class="warning-icon">!</span>
+                <span class="warning-text">
+                    The deadline for using this tool is the 28th of May 2025.
+                    In case you missed the deadline you can copy your save file located at 
+                    <code>%LocalAppData%\MultiVersus\Saved</code> but is not guaranteed to work.
+                </span>
+            </div>
+
+
+        </div>
+
+        <div id="loading-overlay" class="hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="footer">
+            <span>This is a community-made backup utility and is not affiliated with WB Games. Source code is available on <a href="https://github.com/thethiny/MultiVersus-Save-Backupper">GitHub</a></span>
+        </div>
+        <div class="footer">
+            <span>Tool is maintained by <a href="https://twitter.com/thethiny">@thethiny</a> on X/Twitter and the MVSI Team on Discord</span>
+        </div>
+        <div class="footer">
+            <span>No information or logging is stored on our side. Your data can only be downloaded by you.</span>
+        </div>
+
+        <script src="/static/script.js"></script>
+    </body>
+</html>
