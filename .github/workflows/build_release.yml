@@ -7,6 +7,8 @@ on:
     paths:
       - '**/*.py'
 
+  workflow_dispatch:
+
 jobs:
   build-and-release:
     runs-on: windows-latest
