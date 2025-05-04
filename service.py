@@ -1,13 +1,14 @@
-from io import BytesIO
 import json
-from typing import Optional
 import zipfile
-from fastapi.params import Param
+
+from io import BytesIO
+from typing import Optional
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+
 from src.dokken import DokkenAPI
 from src.steam_service import get_encrypted_ticket
 
