@@ -3,3 +3,4 @@ fastapi
 uvicorn
 pydantic
 steam[client]
+jijna2
