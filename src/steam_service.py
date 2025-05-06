@@ -34,7 +34,6 @@ async def get_encrypted_ticket(
 
             @client.on(client.EVENT_ERROR)  # type: ignore
             def handle_error(result_code):
-                print("Error event")
                 error = EResult(result_code)
                 result["status"] = "error"
                 if error == EResult.InvalidPassword:
@@ -53,6 +52,7 @@ async def get_encrypted_ticket(
                     result["status"] = "2fa"
                 else:
                     result["error"] = f"Steam error: {error.name}"
+                print(f"Error event: {result['error']}")
                 client.disconnect()
 
             login_args = {"username": username}
