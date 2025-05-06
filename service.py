@@ -49,7 +49,9 @@ async def get_ticket(data: LoginRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
     if result.get("status") == "error":
-        raise HTTPException(status_code=400, detail=result.get("error", "Unknown Steam error"))
+        error = result.get("error", "Unknown Steam Error")
+        print(f"Error for user {data.username}: {error}")
+        raise HTTPException(status_code=400, detail=error)
 
     return result
 

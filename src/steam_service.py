@@ -71,6 +71,9 @@ async def get_encrypted_ticket(
             client.login(**login_args)
             while not result and (time.monotonic() - start_time < timeout):
                 client.sleep(0.2)
+            if not result: # Timeout
+                result["status"] = "error"
+                result["error"] = "Timed out waiting for steam to respond"
 
             return result
 
